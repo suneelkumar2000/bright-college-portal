@@ -1,4 +1,5 @@
 # bright-college-portal
+User Manual: https://docs.google.com/document/d/1n2hMWJSayiUDYyPLl4KEl_G83ADkfUHVAgi7PG4J1DA/edit
 <div align="center"> <h2>Bright College Portal</h2></div>
 <h3>Features in  College Portal</h3>
 <br>
