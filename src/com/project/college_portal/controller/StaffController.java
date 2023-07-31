@@ -364,7 +364,7 @@ public class StaffController {
 	@GetMapping(path = "/addUpdateResult")
 	public String addOrUpdateResult(@RequestParam("subject") String subjectName, @RequestParam("exam") String examName,
 			@RequestParam("examType") String examType, @RequestParam("userId") int userId,
-			@RequestParam("marks") int marks, Model model) throws MarkException, UserIdException, ExamIdException {
+			@RequestParam("marks") int marks, Model model) throws MarkException, UserIdException, ExamIdException, SubjectIdException {
 		ResultPojo resultPojo = new ResultPojo();
 		resultPojo.setUserId(userId);
 		resultPojo.setMarks(marks);
@@ -388,9 +388,9 @@ public class StaffController {
 									return "redirect:/resultAdmin";
 								}
 							}
-						}
+						}throw new ExamIdException("Exam Id dosen't exist");
 					}
-				}
+				}throw new SubjectIdException("Subject Id dosen't exist");
 			}
 		}
 		return "redirect:/resultAdmin";
