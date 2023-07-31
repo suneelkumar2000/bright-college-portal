@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Department List</title>
+	<meta charSet="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css"
+	th:href="@{/CSS file/footer.css}">
+
+	<link rel="stylesheet" th:href="@{/SlickGrid2/css/smoothness/jquery-ui-1.8.16.custom.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/SlickGrid2/slick.grid.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/SlickGrid2/controls/slick.gridmenu.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/SlickGrid2/controls/slick.columnpicker.css}" type="text/css" />
+
+	<style media="only screen">
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			box-sizing: border-box;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		html {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0;
+			overflow: auto;
+		}
+
+		body {
+			padding: 1rem;
+			overflow: auto;
+			background: #fffefe;
+		}
+		body h1 {
+			align-items: center;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #000000;
+			width: 100%;
+		}
+
+		li span {
+			float: left;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.logoimage {
+			width: 1.2em;
+			border-radius: 12px;
+		}
+
+		li a {
+			float: right;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+		}
+
+		li a:hover {
+			color: #F81818;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		li span:hover {
+			color: #4df3ff;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		.sidenav {
+			height: 100%;
+			/* 100% Full-height */
+			width: 0;
+			/* 0 width - change this with JavaScript */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Stay on top */
+			top: 0;
+			/* Stay at the top */
+			left: 0;
+			background: linear-gradient(180deg, #000000,#272d3f,#1e2436,#1e2436);
+			/* Black*/
+			overflow-x: hidden;
+			/* Disable horizontal scroll */
+			padding-top: 60px;
+			/* Place content 60px from the top */
+			transition: 0.5s;
+			/* 0.5 second transition effect to slide in the sidenav */
+		}
+
+		/* The navigation menu links */
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+			transition: 0.3s;
+		}
+
+		/* When you mouse over the navigation links, change their color */
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+
+		/* Position and style the close button (top right corner) */
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+
+		/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+		#main {
+			transition: margin-left .5s;
+			padding: 20px;
+		}
+
+		/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+		@media screen and (max-height: 450px) {
+			.sidenav {
+				padding-top: 15px;
+			}
+
+			.sidenav a {
+				font-size: 18px;
+			}
+		}
+
+		.container {
+			padding-left: 15px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxGztZUWNhl-4kI9iPj99J8Kg8vrYjBhI1hQ&usqp=CAU");
+			background-size: cover;
+		}
+		
+		.tablebutton1{
+			align-items: center;
+			color: #ffffff;
+			background-color: #F81818;
+		}
+		.tablebutton2{
+			align-items: center;
+			color: #ffffff;
+			background-color: limegreen;
+		}
+		
+		/* Button */
+
+		.addButton {
+			background-color: white;
+			color: black;
+			border: 2px solid #0b68e2;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+
+		.addButton a {
+			color: black;
+		}
+
+		.addButton:hover {
+			background-color: #0b68e2;
+			color: white;
+		}
+
+		.addButton a:hover {
+			color: white;
+		}
+
+		.activeButton {
+			background-color: white;
+			color: black;
+			border: 2px solid #4CAF50;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+		.activeButton a {
+			color: black;
+		}
+
+		.activeButton:hover {
+			background-color: #4CAF50;
+			color: white;
+		}
+
+		.activeButton a:hover {
+			color: white;
+		}
+
+		.inactiveButton {
+			background-color: white;
+			color: black;
+			border: 2px solid #e20b0b;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+		.inactiveButton a {
+			color: black;
+		}
+
+		.inactiveButton:hover {
+			background-color: #e20b0b;
+			color: white;
+		}
+
+		.inactiveButton a:hover {
+			color: white;
+		}
+	</style>
+</head>
+
+<header>
+	<div class="navbar">
+		<nav>
+			<ul>
+				<li><a th:href="@{/logout}">Logout</a></li>
+				<li class="menu"><span onclick="openNav()"><img
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU" alt="logo"
+							class="logoimage"> BRIGHT</span></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<body>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a th:href="@{/adminHome}">Home</a>
+		<a th:href="@{/listofusers}">Student List</a>
+		<a th:href="@{/attendanceAdmin}">Attendance</a>
+		<a th:href="@{/resultAdmin}">Result</a>
+		<a th:href="@{/departmentlist}">Department</a>
+		<a th:href="@{/semesterlist}">Semester List</a>
+		<a th:href="@{/subjectDetails}">Subject Details</a>
+		<a th:href="@{/examlist}">Exam Details</a>
+	</div>
+
+	<div class="container" id="container">
+
+
+		<button class="addButton"><a th:href="@{/insertDepartmentForm}" class="btn btn-primary btn-sm mb-3"> Add Department </a></button>
+		<button class="activeButton"><a th:href="@{/departmentlist}" class="btn btn-primary btn-sm mb-3">Active Departments</a></button>
+		<button class="inactiveButton"><a th:href="@{/inactiveDepartmentlist}" class="btn btn-primary btn-sm mb-3"> Inactive
+				Departments</a></button>
+		<h1>Department List</h1>
+	</div>
+
+	<div class="department-table">
+		<!-- support files start  -->
+
+		<!-- import supporting files  -->
+		<script th:src="@{/SlickGrid2/lib/jquery-1.7.min.js}"></script>
+		<script th:src="@{/SlickGrid2/lib/jquery-ui-1.8.16.custom.min.js}"></script>
+		<script th:src="@{/SlickGrid2/lib/jquery.event.drag-2.2.js}"></script>
+
+		<script th:src="@{/SlickGrid2/slick.core.js}"></script>
+		<script th:src="@{/SlickGrid2/slick.dataview.js}"></script>
+		<script th:src="@{/SlickGrid2/slick.grid.js}"></script>
+
+
+		<!--grid menu model start  -->
+		<script th:src="@{/SlickGrid2/plugins/slick.rowselectionmodel.js}"></script>
+		<script th:src="@{/SlickGrid2/controls/slick.pager.js}"></script>
+		<script th:src="@{/SlickGrid2/controls/slick.columnpicker.js}"></script>
+
+		<!--grid menu model end  -->
+
+		<!-- import script files for grid start -->
+		<script th:src="@{/JS files/departmentGrid.js}"></script>
+
+		<!-- import script files for grid end -->
+
+		<!-- support files end  -->
+		<div id="department-info">
+			<div style="width:100%; box-sizing: border-box">
+				<div id="departmentGrid" style="width: 100%; height: 420px;"></div>
+			</div>
+			<input type="text" id="department" th:value="${listOfDepartment}" style="display:none;">
+			<!-- call external script  -->
+			<script th:inline="javascript">
+				departmentGrid();
+			</script>
+		</div>
+		<!-- donation table end -->
+	</div>
+	
+	<div id="contactUs">
+		<div th:replace="footer.html::footer"></div>
+	</div>
+
+
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+			document.getElementById("department-info").style.paddingLeft = "250px";
+			document.getElementById("department-info").style.transition = "0.5s";
+			document.getElementById("container").style.paddingLeft = "250px";
+			document.getElementById("container").style.transition = "0.5s";
+		}
+
+		/* Set the width of the side navigation to 0 */
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("department-info").style.paddingLeft = "0px";
+			document.getElementById("department-info").style.transition = "0.5s";
+			document.getElementById("container").style.paddingLeft = "15px";
+			document.getElementById("container").style.transition = "0.5s";
+		}
+	</script>
+</body>
+
+</html>

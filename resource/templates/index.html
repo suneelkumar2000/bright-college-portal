@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Index Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css"
+	th:href="@{/CSS file/footer.css}">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700;900&display=swap');
+
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+
+			font-family: 'Roboto', sans-serif;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			position: relative;
+		}
+
+		.container {
+			background-image: url(https://images.theconversation.com/files/96073/original/image-20150924-17103-54sgxy.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
+			background-size: cover;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container1 {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.slideshow-container {
+			background-color: #1e2436;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container2 {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.product-container {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			padding: 0.5em;
+		}
+
+		.product-container>* {
+			flex-basis: 50;
+		}
+
+		.product {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 20em;
+			margin: 1em;
+			background: rgba(255, 255, 255, 0.4);
+			padding: 1em;
+			border-radius: 12px;
+			backdrop-filter: blur(10px);
+		}
+
+		.product-img {
+			width: 40%;
+			border-radius: 12px;
+			margin: 0.5em;
+		}
+
+		h1 {
+			background-color: rgb(246, 251, 253);
+			text-align: center;
+			color: #2379b3;
+			padding: 0.5em;
+		}
+
+		h2 {
+			font-size: 1.4rem;
+			text-align: center;
+			padding: 0.3em;
+			margin: 0.1em;
+
+		}
+
+		h3 {
+			font-size: 1.3rem;
+			text-align: center;
+			padding: 0.3em;
+			margin: 0.1em;
+		}
+
+		p {
+			font-size: 0.9rem;
+			padding: 1em;
+		}
+
+		.icon {
+			width: 2em;
+		}
+
+		.logoimage {
+			width: 1.2em;
+			border-radius: 12px;
+		}
+
+		.reviewHead {
+			color: rgb(207, 26, 26);
+			font-size: 1.6rem;
+		}
+
+		/*  rating */
+		.rating-selector {
+			display: flex;
+			justify-content: flex start;
+			align-items: center;
+			padding: 1em;
+		}
+
+		textarea {
+			max-width: 90%;
+			padding: 1em;
+			border: 2px solid #fff;
+			border-radius: 12px;
+		}
+
+		.review-input {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			width: 90%;
+			background: rgba(255, 255, 255, 0.4);
+			padding: 1.5em;
+			margin: 2em 0;
+			border-radius: 12px;
+			backdrop-filter: blur(10px);
+		}
+
+		.star-rating {
+			display: flex;
+		}
+
+		.star {
+			width: 50px;
+			height: 50px;
+			position: relative;
+			cursor: pointer;
+			background-color: rgb(100, 98, 98);
+			transition: transform 0.3s;
+			clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+		}
+
+		.star:hover {
+			transform: scale(1.2, 1.2)
+		}
+
+		.selected {
+			background-color: gold;
+		}
+
+		.reviewed-star {
+			width: 35px;
+			height: 35px;
+			cursor: default;
+		}
+
+		.reviewed-star:hover {
+			transform: none;
+		}
+
+		.submit-button {
+			background: #e11537;
+			color: #fff;
+			width: 8em;
+			padding: 0.6em;
+			margin-top: 0.5em;
+			border: 2px solid #fff;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.submit-button:hover {
+			box-shadow: 2px 2px 12px #222;
+		}
+
+		.reviews {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.reviews>* {
+			flex-basis: 20%;
+		}
+
+		.review {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			background: rgba(255, 255, 255, 0.4);
+			padding: 1em;
+			margin: 1.5em;
+			border-radius: 12px;
+			backdrop-filter: blur(10px);
+		}
+
+		.review>* {
+			flex-basis: 100%;
+		}
+
+		.review-hero {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.review-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100px;
+		}
+
+		.avatar {
+			width: 8em;
+			height: 8em;
+			object-fit: cover;
+			border-radius: 50%;
+			box-shadow: 2px 2px 8px #222;
+			margin: 1em;
+		}
+
+		.rating-label {
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+
+		/* rating end */
+		#navbar {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #000000;
+			width: 100%;
+			position: static;
+		}
+
+		li a {
+			float: right;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 22px;
+			font-weight: 600;
+			padding: 14px 16px;
+		}
+
+		.logo {
+			float: left;
+			font-size: 20px;
+			display: block;
+			color: white;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.login a {
+			background-color: #c50a0a;
+			cursor: pointer;
+			font-size: 22px;
+			font-weight: 600;
+			color: #ffffff;
+			transition: all .5s;
+		}
+
+		li a:hover {
+			background-color: #020716;
+			cursor: pointer;
+			font-size: 22px;
+			font-weight: 600;
+			color: #dddde2;
+			transition: all .5s;
+		}
+
+		.login a:hover {
+			background-color: #000000;
+			cursor: pointer;
+			font-size: 20px;
+			font-weight: 600;
+			color: #F81818;
+			transition: all .5s;
+		}
+
+		/* login popup */
+
+		.popup .content {
+			width: 400px;
+			z-index: 2;
+			text-align: center;
+			top: 55%;
+			left: 50%;
+			transform: translate(-50%, -150%) scale(0);
+			padding: 20px;
+			border-radius: 20px;
+			background: #ffffff;
+			position: fixed;
+			box-shadow: 0 5px 30px rgba(146, 141, 141, 0.3);
+		}
+
+		.content h1 {
+			background-color: #ffffff;
+			color: #2691d9;
+			text-align: center;
+			padding: 0 0 20px 0;
+			border-bottom: 1px solid silver;
+		}
+
+		.content form {
+			padding: 0 40px;
+			box-sizing: border-box;
+		}
+
+		form .txt_field {
+			position: relative;
+			border-bottom: 2px solid #adadad;
+			margin: 30px 0;
+		}
+
+		.txt_field input {
+			color: rgb(0, 0, 0);
+			width: 100%;
+			padding: 0 5px;
+			height: 40px;
+			font-size: 16px;
+			border: none;
+			background: none;
+			outline: none;
+		}
+
+		.txt_field label {
+			position: absolute;
+			top: 50%;
+			left: 5px;
+			color: #adadad;
+			transform: translateY(-50%);
+			font-size: 16px;
+			pointer-events: none;
+			transition: .5s;
+		}
+
+		.txt_field span::before {
+			content: '';
+			position: absolute;
+			top: 40px;
+			left: 0;
+			width: 0%;
+			height: 2px;
+			background: #2691d9;
+			transition: .5s;
+		}
+
+		.txt_field input:focus~label,
+		.txt_field input:valid~label {
+			top: -5px;
+			color: #2691d9;
+		}
+
+		.txt_field input:focus~span::before,
+		.txt_field input:valid~span::before {
+			width: 100%;
+		}
+
+		.pass {
+			margin: -5px 0 20px 5px;
+			color: #888484;
+			cursor: pointer;
+		}
+
+		.pass:hover {
+			text-decoration: underline;
+		}
+
+		input[type="submit"] {
+			width: 100%;
+			height: 50px;
+			border: 1px solid;
+
+			background: linear-gradient(90deg, #8bd9f8, #3995ce, #2691d9, #ed6464);
+			border-radius: 25px;
+			font-size: 18px;
+			color: #e9f4fb;
+			font-weight: 700;
+			cursor: pointer;
+			outline: none;
+		}
+
+		input[type="submit"]:hover {
+			border-color: #2691d9;
+			background: linear-gradient(90deg, #ed6464, #2691d9, #3995ce, #8bd9f8);
+			transition: .5s;
+		}
+
+		.signup_link {
+			margin: 30px 0;
+			text-align: center;
+			font-size: 16px;
+			color: #b4b4b4;
+		}
+
+		.signup_link a {
+			color: #2691d9;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.signup_link a:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		/* Popup active */
+
+		.popup.active .content {
+			transition: all 300ms ease-in-out;
+			transform: translate(-50%, -50%) scale(1);
+			background-color: #ffffff;
+		}
+
+		.popup .close-btn {
+			text-align: center;
+			color: white;
+			font-size: 20px;
+			border-radius: 50%;
+			background: #837f7f;
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			width: 30px;
+			padding: 2px 5px 7px 5px;
+			height: 30px;
+			cursor: pointer;
+			box-shadow: 0 5px 30px rgba(255, 255, 255, 0.26);
+		}
+
+		.popup .close-btn:hover {
+			background: #c50a0a;
+		}
+
+		.container#blur.active {
+			filter: blur(20px);
+			pointer-events: none;
+			user-select: none;
+		}
+
+		/* forgot password popup */
+		.required {
+			font-size: 1.5em;
+			color: red;
+		}
+
+		.form-control label {
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+
+		.form-control input {
+			border: 2px solid #f0f0f0;
+			border-radius: 4px;
+			display: block;
+			font-family: inherit;
+			font-size: 14px;
+			padding: 10px;
+			width: 100%;
+		}
+
+		.form-control input:focus {
+			outline: 0;
+			border-color: #777;
+		}
+
+		.form-control.success input {
+			border-color: #0cc477;
+		}
+
+		.form-control.error input {
+			border-color: rgb(242, 18, 18);
+		}
+
+		.form-control i {
+			visibility: hidden;
+			position: absolute;
+			top: 40px;
+			right: 10px;
+		}
+
+		.form-control.success i.fa-check-circle {
+			color: #2ecc71;
+			visibility: visible;
+		}
+
+		.form-control.error i.fa-exclamation-circle {
+			color: rgb(242, 18, 18);
+			visibility: visible;
+		}
+
+		.form-control .error {
+			color: rgb(242, 18, 18);
+			font-size: 16px;
+			margin-top: 5px;
+		}
+
+		.text {
+			color: #817d83;
+		}
+		
+		/* Number text (1/3 etc) */
+		.numbertext {
+			color: #f2f2f2;
+			font-size: 12px;
+			padding: 8px 12px;
+			position: absolute;
+
+		}
+
+		.dot {
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbb;
+			border-radius: 50%;
+			display: inline-block;
+			transition: background-color 1.2s ease;
+		}
+
+		.active {
+			background-color: #717171;
+		}
+
+		/* Fading animation */
+		.fade {
+			animation-name: fade;
+			animation-duration: 1.5s;
+		}
+
+		@keyframes fade {
+			from {
+				opacity: .4
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		/* On smaller screens, decrease text size */
+		@media only screen and (max-width: 300px) {
+			.text {
+				font-size: 11px
+			}
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div class="popup" id="popup-1">
+		<div class="content">
+			<div class="close-btn" onclick="togglePopup()">x
+			</div>
+			<h1>Login</h1>
+			<form action="login" th:action="@{/loginSubmit}" th:object="${loginForm}" method="GET">
+				<div class="txt_field">
+					<input type="text" id="email1" name="email" required> <span></span>
+					<label>Email</label>
+				</div>
+				<div class="txt_field">
+					<input type="password" id="password1" name="password" required>
+					<span></span> <label>Password</label>
+				</div>
+				<div class="pass"><a onclick="togglePopup2()">Forgot Password?</a></div>
+				<input type="submit" value="Login">
+				<div class="signup_link">
+					Not a member? <a th:href="@{/register}">Signup</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="popup" id="popup-2">
+		<div class="content">
+			<div class="close-btn" onclick="togglePopup2()">x
+			</div>
+
+			<h1>Forgot Password !</h1>
+
+			<form id="form2" action="forgotPassword" th:action="@{/forgotPassword}" th:object="${forgotPasswordForm}"
+				method="GET" class="form">
+				<br>
+				<div class="form-control">
+					<label for="email" class="text"><b>Email</b><span class="required">*</span></label> <input
+						type="text" placeholder="Enter Email ID" id="email2" name="email" />
+					<i class="fas fa-check-circle"></i> <i class="fas fa-exclamation-circle"></i>
+					<b>
+						<div class="error"></div>
+					</b>
+				</div>
+
+				<div class="form-control">
+					<label for="Phone" class="text"><b>Phone Number</b><span class="required">*</span></label> <input
+						type="tel" pattern='^\+?\d{10,12}' placeholder="Enter Phone Number" id="phone2" name="phone" />
+					<i class="fas fa-check-circle"></i> <i class="fas fa-exclamation-circle"></i>
+					<b>
+						<div class="error"></div>
+					</b>
+				</div>
+
+				<div class="form-control">
+					<label for="password" class="text"><b>Password</b><span class="required">*</span></label> <input
+						type="password" placeholder="Enter Password" id="password2" name="password"
+						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" />
+					<i class="fas fa-check-circle"></i> <i class="fas fa-exclamation-circle"></i>
+					<b>
+						<div class="error"></div>
+					</b>
+				</div>
+
+				<div class="form-control">
+					<label for="cpassword" class="text"><b>Confirm
+							Password</b><span class="required">*</span></label> <input type="password"
+						placeholder="Re Enter Password" id="cpassword2" name="cpassword"
+						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" />
+					<i class="fas fa-check-circle"></i> <i class="fas fa-exclamation-circle"></i>
+					<b>
+						<div class="error"></div>
+					</b>
+				</div>
+				<br>
+				<input type="submit" onclick="clearText()" value="Login">
+			</form>
+		</div>
+	</div>
+
+	<header>
+		<div class="navbar">
+			<nav>
+				<ul id="navbar">
+					<li class="login"><a onclick="togglePopup()"><i class="fa fa-fw fa-user"></i>Login</a></li>
+					<li><a th:href="@{#}">About us</a></li>
+					<li class="logo"><img
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU" alt="logo"
+							class="logoimage"> BRIGHT</li>
+				</ul>
+			</nav>
+		</div>
+		<h1>WELCOME TO BRIGHT COLLEGE PORTAL</h1>
+	</header>
+
+	<div class="slideshow-container">
+		<h2></h2>
+		<div class="mySlides fade">
+			<div class="numbertext">1 / 3</div>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3oqNKEF6JVUf3iUa5NV3yIPwZiliX5cEaGw&usqp=CAU" alt="image"
+				style="width:20cm; height: 10cm;">
+			<div class="text">Caption Text</div>
+		</div>
+
+		<div class="mySlides fade">
+			<div class="numbertext">2 / 3</div>
+			<img src="https://srec.ac.in/uploads/resource/src/WqqO5vqK1g12082022070524srecblog080822v5.png" alt="image"
+				style="width:20cm; height: 10cm;">
+			<div class="text">Caption Two</div>
+		</div>
+
+		<div class="mySlides fade">
+			<div class="numbertext">3 / 3</div>
+			<img src="https://wherewomenwork.s3-eu-west-1.amazonaws.com/insight/engineering-2-23.jpg" alt="image"
+				style="width:20cm; height: 10cm;">
+			<div class="text">Caption Three</div>
+		</div>
+		<br>
+		<div style="text-align:center">
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+		</div>
+	</div>
+
+
+
+
+	<div class="container" id="blur">
+		<div class="container1">
+			<div class="product-container">
+				<div class="product">
+
+					<h2>Academics</h2>
+					<p>"Teaching quality is good and teachers are too supportive and we also help students in extra
+						curricular
+						activities . we have a great support with students . There so many societies which also help
+						students to
+						learn in different field." </p>
+					<img src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png" class="icon" alt="Facebook icon">
+				</div>
+
+				<div class="product">
+
+					<h2>College Infrastructure</h2>
+					<p>"In terms of infrastructure of our college it is top class. Since our college construction has
+						finished recently so our infrastructure from inside is very professional and high class. Lecture
+						halls are very large and all halls and classrooms are air conditioned. Even our corridors are
+						very
+						cold during Summers. Also high-speed Wi-Fi is available for students use. Canteen, medical
+						facilities and sports room are average and do have adequate equipments required. Hostels even
+						have
+						Wi-Fi and AC as well" </p>
+					<img src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png" class="icon" alt="Facebook icon">
+				</div>
+
+				<div class="product">
+
+					<h2>Placements</h2>
+					<p>"Our college has a highly active placement unit. The placement cell maintains the placement
+						reports
+						each year. Our college has a user-friendly website. Students can get all details regarding
+						placements on the website. Around 48 undergraduate students got placed in our college." </p>
+					<img src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png" class="icon" alt="Facebook icon">
+				</div>
+			</div>
+		</div>
+
+		<div class="container2">
+			<div class="review-input">
+				<h3>Share Your Review</h3>
+				<p class="rating-text"><b>Rating: </b></p>
+				<div class="star-rating">
+					<div class="star"></div>
+					<div class="star"></div>
+					<div class="star"></div>
+					<div class="star"></div>
+					<div class="star"></div>
+				</div>
+				<br>
+				<textarea id="review-title" rows="1" cols="80" maxlength="50"
+					placeholder="what's the gist of your review?"></textarea>
+				<br>
+				<textarea id="review-field" rows="5" cols="80"
+					placeholder="tell me what you think about this website"></textarea>
+				<div class="review-submit">
+					<button class="submit-button" id="submit-button">Submit</button>
+				</div>
+			</div>
+
+			<h2 class="reviewHead">Reviews</h2>
+			<div class="reviews">
+
+				<div class="review">
+					<div class="review-hero">
+						<img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+							class="avatar" alt="review">
+						<p class="rating-label">Rating: <span
+								class="star-rating">&starf;&starf;&starf;&starf;&starf;</span>
+						</p>
+					</div>
+					<div class="review-content">
+						<h3>Perfect!</h3>
+						<p>"Really professional service with friendly and knowledgeable staff."</p>
+					</div>
+				</div>
+
+				<div class="review">
+					<div class="review-hero">
+						<img src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+							class="avatar" alt="review">
+						<p class="rating-label">Rating: <span class="star-rating">&starf;&starf;&starf;</span></p>
+					</div>
+					<div class="review-content">
+						<h3>Fantastic</h3>
+						<p>"Really professional service with friendly and knowledgeable staff."</p>
+					</div>
+				</div>
+
+
+				<div class="review">
+					<div class="review-hero">
+						<img src="https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+							class="avatar" alt="review">
+						<p class="rating-label">Rating: <span class="star-rating">&starf;&starf;&starf;</span></p>
+					</div>
+					<div class="review-content">
+						<h3>OK</h3>
+						<p>"Really professional service with friendly and knowledgeable staff."</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="contactUs">
+		<div th:replace="footer.html::footer"></div>
+	</div>
+
+	<script> /* Rating Script*/
+		reviewTitle = document.querySelector("#review-title")
+		reviewField = document.querySelector("#review-field")
+		submitButton = document.querySelector("#submit-button")
+		theReviewsContainer = document.querySelector(".reviews")
+		stars = document.querySelectorAll(".star")
+		starBox = document.querySelector(".star-rating")
+
+		let starRating = 0
+
+		stars.forEach((element, index) => {
+			element.addEventListener("click", () => {
+				for (let i of stars) {
+					i.classList.remove("selected")
+				}
+				for (let i = 0; i < index + 1; i++) {
+					stars[i].classList.add("selected")
+				}
+				starRating = index + 1
+			})
+		})
+
+		submitButton.addEventListener("click", () => {
+			if (starRating != 0 && reviewTitle.value != "" && reviewField.value != "") {
+				appendReview(starRating, reviewTitle.value, reviewField.value)
+				resetReview()
+
+			} else {
+				toastr("You need to fill out all the inputs before you can review")
+			}
+		})
+		function resetReview() {
+			starRating = 0
+			for (let i of stars) {
+				i.classList.remove("selected")
+			}
+			reviewTitle.value = ""
+			reviewField.value = ""
+		}
+
+		function appendStars(rating, parent) {
+			const starContainer = document.createElement("div")
+			starContainer.classList.add("star-rating")
+			for (let i = 0; i < 5; i++) {
+				const newStar = document.createElement("div")
+				newStar.classList.add("star")
+				newStar.classList.add("reviewed-star")
+				if (i < rating) {
+					newStar.classList.add("selected")
+				}
+				starContainer.appendChild(newStar)
+			}
+
+			parent.appendChild(starContainer)
+		}
+
+		function appendReview(rating, title, review) {
+			const newReviewContainer = document.createElement("div")
+			newReviewContainer.classList.add("review")
+			const newReviewTitle = document.createElement("h3")
+			newReviewTitle.innerHTML = title
+			const newReviewText = document.createElement("p")
+			newReviewText.innerHTML = review
+			theReviewsContainer.appendChild(newReviewContainer)
+			newReviewContainer.appendChild(newReviewTitle)
+			appendStars(rating, newReviewContainer)
+			newReviewContainer.appendChild(newReviewText)
+		}
+	</script>
+
+
+	<script>/* popup script*/
+		function togglePopup() {
+			document.getElementById("popup-1")
+				.classList.toggle("active");
+			var blur = document.getElementById('blur');
+			blur.classList.toggle('active');
+		}
+		function togglePopup2() {
+			document.getElementById("popup-2")
+				.classList.toggle("active");
+		}
+	</script>
+	<script>
+		let output = document.getElementById('output');
+
+		function clearText(event) {
+			// access input field
+			let clearEmail = document.getElementById('#email');
+			let clearPhone = document.getElementById('#phone');
+			// clear the input field.
+			clearEmail.value = "";
+			clearPhone.value = "";
+			output.innerHTML += "Form submitted successfully! <br>";
+		}
+
+		let form = document.querySelector('#form2')
+		let email = document.querySelector('#email2');
+		let password = document.querySelector('#password2');
+		let cpassword = document.querySelector('#cpassword2');
+		let phone = document.querySelector('#phone2');
+
+		form.addEventListener('submit', (e) => {
+
+			if (!validateInputs()) {
+				e.preventDefault();
+			}
+		})
+
+		function validateInputs() {
+			let emailValue = email.value.trim();
+			let passwordValue = password.value.trim();
+			let cpasswordValue = cpassword.value.trim();
+			let phoneValue = phone.value.trim();
+			let success = true
+
+			if (emailValue === '') {
+				success = false;
+				setError(email, 'Email is required')
+			}
+			else if (!validateEmail(emailValue)) {
+				success = false;
+				setError(email, 'Please Enter Valid Email')
+			}
+			else {
+				setSuccess(email)
+			}
+
+			if (passwordValue === '') {
+				success = false;
+				setError(password, 'Password is required')
+			}
+			else if (passwordValue.length < 8) {
+				success = false;
+				setError(password, 'Password must be atleast 8 characters long')
+			}
+			else {
+				setSuccess(password)
+			}
+
+
+			if (cpasswordValue === '') {
+				success = false;
+				setError(cpassword, 'Confirm password is required')
+			}
+			else if (cpasswordValue !== passwordValue) {
+				success = false;
+				setError(cpassword, 'Password does not match')
+			}
+			else {
+				setSuccess(cpassword)
+			}
+
+			if (phoneValue === '') {
+				success = false;
+				setError(phone, 'Phone Number is required')
+			} else if (phoneValue <= 0) {
+				setErrorFor(phone, 'Invalid Phone Number');
+			} else {
+				setSuccess(phone)
+			}
+			return success;
+		}
+		function setError(element, message) {
+			let inputGroup = element.parentElement;
+			let errorElement = inputGroup.querySelector('.error')
+
+			errorElement.innerText = message;
+			inputGroup.classList.add('error')
+			inputGroup.classList.remove('success')
+		}
+
+		function setSuccess(element) {
+			let inputGroup = element.parentElement;
+			let errorElement = inputGroup.querySelector('.error')
+
+			errorElement.innerText = '';
+			inputGroup.classList.add('success')
+			inputGroup.classList.remove('error')
+		}
+
+		let validateEmail = (email) => {
+			return String(email)
+				.toLowerCase()
+				.match(
+					/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				)
+		};
+
+		let validateName = (name) => {
+			return String(name)
+				.match(
+					/^[A-Za-z]+$/
+				);
+		};
+	</script>
+	<script>
+		let slideIndex = 0;
+		showSlides();
+
+		function showSlides() {
+			let i;
+			let slides = document.getElementsByClassName("mySlides");
+			let dots = document.getElementsByClassName("dot");
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			slideIndex++;
+			if (slideIndex > slides.length) {slideIndex = 1}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+			setTimeout(showSlides, 4000); // Change image every 4 seconds
+		}
+	</script>
+
+</body>
+
+</html>

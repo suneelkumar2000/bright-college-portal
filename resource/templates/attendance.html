@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Student Attendance</title>
+	<meta charSet="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" th:href="@{/CSS file/footer.css}">
+	<style media="only screen">
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			box-sizing: border-box;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		html {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0;
+			overflow: auto;
+		}
+
+		body {
+			padding: 1rem;
+			overflow: auto;
+		}
+
+		body {
+			background: #fffefe;
+		}
+
+		body h1 {
+			align-items: center;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #000000;
+			width: 100%;
+		}
+
+		li span {
+			float: left;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.logoimage {
+			width: 1.2em;
+			border-radius: 12px;
+		}
+
+		li a {
+			float: right;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+		}
+
+		li a:hover {
+			color: #F81818;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		li span:hover {
+			color: #4df3ff;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		.sidenav {
+			height: 100%;
+			/* 100% Full-height */
+			width: 0;
+			/* 0 width - change this with JavaScript */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Stay on top */
+			top: 0;
+			/* Stay at the top */
+			left: 0;
+			background: linear-gradient(180deg, #000000, #272d3f, #1e2436, #1e2436);
+			/* Black*/
+			overflow-x: hidden;
+			/* Disable horizontal scroll */
+			padding-top: 60px;
+			/* Place content 60px from the top */
+			transition: 0.5s;
+			/* 0.5 second transition effect to slide in the sidenav */
+		}
+
+		/* The navigation menu links */
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+			transition: 0.3s;
+		}
+
+		/* When you mouse over the navigation links, change their color */
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+
+		/* Position and style the close button (top right corner) */
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+
+		/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+		#main {
+			transition: margin-left .5s;
+			padding: 20px;
+		}
+
+		/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+		@media screen and (max-height: 450px) {
+			.sidenav {
+				padding-top: 15px;
+			}
+
+			.sidenav a {
+				font-size: 18px;
+			}
+		}
+
+		.center {
+			align-items: center;
+			text-align: center;
+		}
+
+		/*  circle */
+		.flex-wrapper {
+			display: flex;
+			flex-flow: row nowrap;
+
+		}
+
+		.content {
+			width: 33%;
+			justify-content: space-around;
+			background-color: #ffffff;
+			color: #000000;
+			padding-left: 10%;
+			padding-bottom: 5%;
+			padding-top: 5%;
+		}
+		
+		.content span {
+			color: blue;
+		}
+
+		.single-chart {
+			border-radius: 18%;
+			width: 20%;
+			justify-content: space-around;
+			padding-left: 10%;
+			padding-bottom: 5%;
+			padding-right: 10%;
+			background-color: #000000;
+			color: #ffffff;
+		}
+
+		.circular-chart {
+			display: block;
+			margin: 10px auto;
+			max-width: 80%;
+			max-height: 250px;
+		}
+
+		.circle-bg {
+			fill: none;
+			stroke: #eee;
+			stroke-width: 3.8;
+		}
+
+		.circle {
+			fill: none;
+			stroke-width: 2.8;
+			stroke-linecap: round;
+			animation: progress 1s ease-out forwards;
+		}
+
+		@keyframes progress {
+			0% {
+				stroke-dasharray: 0 100;
+			}
+		}
+
+		.circular-chart-95-100 .circle {
+			stroke: #16e00f;
+		}
+
+		.circular-chart-80-95 .circle {
+			stroke: #0edf77;
+		}
+
+		.circular-chart-60-80 .circle {
+			stroke: #ffe600;
+		}
+
+		.circular-chart-40-60 .circle {
+			stroke: #ff7b00;
+		}
+
+		.circular-chart-20-40 .circle {
+			stroke: rgb(216, 62, 15);
+		}
+
+		.circular-chart-0-20 .circle {
+			stroke: #e20b0b;
+		}
+
+		.circular-chart-0 .circle {
+			stroke: #920707;
+		}
+
+		.percentage {
+			fill: #666;
+			font-family: sans-serif;
+			font-size: 0.5em;
+			text-anchor: middle;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<nav>
+			<ul>
+				<li><a th:href="@{/logout}">Logout</a></li>
+				<li class="menu"><span onclick="openNav()"><img
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU"
+							alt="logo" class="logoimage"> BRIGHT</span></li>
+			</ul>
+		</nav>
+	</div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a th:href="@{/studentHome}">Home</a>
+		<a th:href="@{/attendance}">Attendance</a>
+		<a th:href="@{/studentResult}">Result</a>
+	</div>
+
+	<div class="attendance" id="attendance">
+		<div class="center">
+			<h1>WELCOME </h1>
+			<h1 th:text="${session.firstName}"></h1>
+
+		</div>
+
+
+		<span th:each="attendance:${attendanceDetails}">
+			<div class="flex-wrapper">
+				<div class="content">
+					<h2>Current Semester : <span th:text="${attendance.semester}"></span></h2>
+					<br>
+					<h2>Total Days : <span th:text="${attendance.totalDays}"></span><span> Days</span></h2>
+					<h2>Total Days Attended : <span th:text="${attendance.daysAttended}"></span><span> Days</span></h2>
+					<h2>Total Days On Leave : <span th:text="${attendance.daysLeave}"></span><span> Days</span></h2>
+				</div>
+				<div class="single-chart">
+					<h4 th:if="${attendance.attendance == 0}"><h2 class="center">Worst Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-0">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="0, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+					<h4 th:if="${attendance.attendance lt 20 and attendance.attendance gt 0}">
+						<h2 class="center">Bad Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-0-20">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="10, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+					<h4 th:if="${attendance.attendance lt 40 and attendance.attendance gt 19}">
+						<h2 class="center">Poor Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-20-40">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="30, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+					<h4 th:if="${attendance.attendance lt 60 and attendance.attendance gt 39}">
+						<h2 class="center">Want To Improve Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-40-60">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="50, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+					<div th:if="${attendance.attendance lt 80 and attendance.attendance gt 59}">
+						<h2 class="center">Your Attendance Percentage Is OK</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-60-80">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="70, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</div>
+					<h4 th:if="${attendance.attendance lt 95 and attendance.attendance gt 79}">
+						<h2 class="center">Good Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-80-95">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="85, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="15" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="23" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+					<h4 th:if="${attendance.attendance lt 101 and attendance.attendance gt 94}">
+						<h2 class="center">Great Attendance Percentage</h2>
+
+						<svg viewBox="0 0 36 36" class="circular-chart-95-100">
+							<path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<path class="circle" stroke-dasharray="98, 100" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+							<text x="14" y="20.35" class="percentage" th:text="${attendance.attendance}"></text>
+							<text x="24" y="20.35" class="percentage">%</text>
+						</svg>
+
+					</h4>
+				</div>
+			</div>
+		</span>
+	</div>
+
+	<br>
+	<div id="contactUs">
+		<div th:replace="footer.html::footer"></div>
+	</div>
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+			document.getElementById("attendance").style.paddingLeft = "250px";
+			document.getElementById("attendance").style.transition = "0.5s";
+		}
+
+		/* Set the width of the side navigation to 0 */
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("attendance").style.paddingLeft = "15px";
+			document.getElementById("attendance").style.transition = "0.5s";
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Error Message</title>
+<link
+    th:href="@{https://fonts.googleapis.com/css2?family=Poppins&display=swap}"
+    rel="stylesheet">
+<style media="screen">
+*, *:before, *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:rgb(133, 133, 134);
+}
+
+.popup {
+    background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    display: none;
+    text-align: center;
+    	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+    
+}
+ button {
+    display: block;
+    margin: 0 0 20px auto;
+    font-size: 30px;
+    color: #ffffff;
+    background-color:red;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+ button:hover{
+background-color: rgb(255, 0, 0,.3);
+}
+
+.popup h2 {
+    margin-top: -20px;
+}
+
+.popup p {
+    font-size: 16px;
+    text-align: center;
+    margin: 20px 0;
+    padding-left:25px;
+	padding-right:25px;
+    line-height: 25px;
+}
+
+.Error {
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #f20707;
+    border-radius: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 0;
+}
+</style>
+</head>
+<body>
+    <div class="popup">
+        <h2>Error!!</h2>
+        <p th:text="${ErrorMessage}" style="color: red;"></p>
+        <label>Retry</label>
+        <input type="button" value="Ok" th:onclick="location.href='javascript:history.back()'" class="Error">
+    </div>
+    
+   
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+            setTimeout(function open(event) {
+                document.querySelector(".popup").style.display = "block";
+            }, 600)
+        });
+
+        document.querySelector("#close").addEventListener("click", function() {
+            document.querySelector(".popup").style.display = "none";
+        });
+    </script>
+</body>
+</html>

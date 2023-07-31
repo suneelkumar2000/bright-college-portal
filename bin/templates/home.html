@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Student Home</title>
+	<meta charSet="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" th:href="@{/CSS file/footer.css}">
+	<style media="only screen">
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			box-sizing: border-box;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		html {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0;
+			overflow: auto;
+		}
+
+		body {
+			padding: 1rem;
+			overflow: auto;
+		}
+
+		body {
+			background: #fffefe;
+		}
+
+		body h1 {
+			align-items: center;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #000000;
+			width: 100%;
+		}
+
+		li span {
+			float: left;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.logoimage {
+			width: 1.2em;
+			border-radius: 12px;
+		}
+
+		li a {
+			float: right;
+			align-items: center;
+			text-decoration: none;
+			color: #ffffff;
+			text-transform: uppercase;
+			font-size: 20px;
+			font-weight: 600;
+			padding: 14px 16px;
+		}
+
+		li a:hover {
+			color: #F81818;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		li span:hover {
+			color: #4df3ff;
+			transition: all .5s;
+			cursor: pointer;
+		}
+
+		.sidenav {
+			height: 100%;
+			/* 100% Full-height */
+			width: 0;
+			/* 0 width - change this with JavaScript */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Stay on top */
+			top: 0;
+			/* Stay at the top */
+			left: 0;
+			background: linear-gradient(180deg, #000000, #272d3f, #1e2436, #1e2436);
+			/* Black*/
+			overflow-x: hidden;
+			/* Disable horizontal scroll */
+			padding-top: 60px;
+			/* Place content 60px from the top */
+			transition: 0.5s;
+			/* 0.5 second transition effect to slide in the sidenav */
+		}
+
+		/* The navigation menu links */
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+			transition: 0.3s;
+		}
+
+		/* When you mouse over the navigation links, change their color */
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+
+		/* Position and style the close button (top right corner) */
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+
+		/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+		#main {
+			transition: margin-left .5s;
+			padding: 20px;
+		}
+
+		/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+		@media screen and (max-height: 450px) {
+			.sidenav {
+				padding-top: 15px;
+			}
+
+			.sidenav a {
+				font-size: 18px;
+			}
+		}
+
+		.note {
+			color: #f70f0f;
+		}
+
+		.note2 {
+			color: #2c83d4;
+		}
+
+		.center {
+			align-items: center;
+			text-align: center;
+		}
+
+		/* table */
+		table {
+			width: 100%;
+		}
+
+		th,
+		td {
+			padding: 15px;
+			text-align: left;
+		}
+
+		.row:hover {
+			background-color: rgb(164, 174, 201);
+		}
+
+		th {
+			background-color: #333955;
+			color: white;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+		
+		button {
+			background-color: white;
+			color: black;
+			border: 2px solid #e20b0b;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 25px;
+		}
+		button a {
+			color: black;
+		}
+
+		button:hover {
+			background-color: #e20b0b;
+			color: white;
+		}
+
+		button a:hover {
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<nav>
+			<ul>
+				<li><a th:href="@{/logout}">Logout</a></li>
+				<li class="menu"><span onclick="openNav()"><img
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU"
+							alt="logo" class="logoimage"> BRIGHT</span></li>
+			</ul>
+		</nav>
+	</div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a th:href="@{/studentHome}">Home</a>
+		<a th:href="@{/attendance}">Attendance</a>
+		<a th:href="@{/studentResult}">Result</a>
+	</div>
+	<div class="center" id="container">
+		<h1>WELCOME </h1>
+		<h1 th:text="${session.firstName}"></h1>
+		<h2 th:if="${semester >0}">
+			You are currently in semester
+			<span th:text="${semester}"></span>
+
+			<br>
+
+			<table border="1" class="table table-striped table-responsive-md">
+				<caption class="note2">Current Semester Subject List</caption>
+
+				<thead>
+					<tr>
+						<th>Subject ID</th>
+						<th>Subject Name</th>
+						<th>Department</th>
+						<th>Semester ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="row" th:each="subject : ${subjectList}">
+						<td th:text="${subject.id}"></td>
+						<td th:text="${subject.name}"></td>
+						<td th:text="${subject.department}"></td>
+						<td th:text="${subject.semesterId}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</h2>
+
+
+		<h2 th:switch="${semester}">
+			<span th:case="'0'">
+				<div class="note">please complete your registration first</div>
+				<br>
+				<button><a th:href="@{/studentRegistration}">Complete Registration</a></button>
+			</span>
+			<span th:case="'-1'">
+				<div class="note2">You have Completed Your degree Already</div>
+			</span>
+		</h2>
+	</div>
+
+	<div id="contactUs">
+		<div th:replace="footer.html::footer"></div>
+	</div>
+
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+			document.getElementById("container").style.paddingLeft = "245px";
+			document.getElementById("container").style.transition = "0.5s";
+		}
+
+		/* Set the width of the side navigation to 0 */
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("container").style.paddingLeft = "0px";
+			document.getElementById("container").style.transition = "0.5s";
+		}
+	</script>
+</body>
+
+</html>

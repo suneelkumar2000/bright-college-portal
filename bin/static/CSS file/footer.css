@@ -1,0 +1,75 @@
+/* footer */
+
+footer {
+	position: relative;
+	display: flex;
+	background-color: #1e2436;
+	height: 300px;
+	bottom: 0;
+}
+
+#f-about-h2 {
+	padding-left: 250px;
+	font: 1em sans-serif;
+	color: aliceblue;
+}
+
+#footer-about {
+	
+	margin: 10px;
+	width: 50%;
+	padding-top: 20px;
+	padding-left: 40px;
+	padding-right: 15px;
+}
+
+footer #f-about-para {
+	padding-left: 250px;
+	font: 1em sans-serif;
+	color: whitesmoke;
+	font-size: 16px;
+	font-weight: 300;
+	text-indent: 25px;
+	line-height: 25px;
+	text-align: justify;
+}
+
+#contact-us {
+
+	font: 1em sans-serif;
+	color: aliceblue;
+	margin: 20px;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 25px;
+}
+
+#c-contact-list {
+	list-style: none;
+}
+
+li {
+	list-style: none;
+}
+
+#c-contact-h2 {
+	padding-left: 20px;
+}
+
+#services {
+	margin-left: 10px;
+}
+
+#copy-rights-content {
+	position: absolute;
+	margin-bottom: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	color: aliceblue;
+	text-align: center;
+	background-color: #020716;
+	padding-top: 20px;
+	width: 100%;
+	height: 40px;
+}

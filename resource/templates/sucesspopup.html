@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registration Success</title>
+
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		.popup-container {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 1;
+		}
+
+		.popup-content {
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: white;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			max-width: 800px;
+			width: 600px;
+			overflow-y: auto;
+			height: 300px;
+		}
+
+		#userCode {
+			display: flex;
+			justify-content: center;
+		}
+
+		.text {
+			padding: 30px 20px;
+		}
+		.Sucess{
+			color: forestgreen;
+		}
+
+		p {
+			line-height: 2rem;
+		}
+
+		h2 {
+			padding: 0 40px;
+		}
+
+		.button {
+			display: inline-block;
+			top: 75%;
+			left: 39%;
+			padding: .75rem 1.25rem;
+			border-radius: 10rem;
+			color: #4f7861;
+			text-transform: uppercase;
+			font-size: 1rem;
+			letter-spacing: .15rem;
+			transition: all .3s;
+			position: absolute;
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		button:hover {
+			color: #fff;
+			background-color: #4f7861;
+		}
+
+		button:before {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="popup-container" class="popup-container">
+		<div class="popup-content">
+			<div class="text">
+				<h3>Welcome to Bright college Portal</h3>
+				<h3 class="Sucess">Your Registration Is Completed Sucessfully</h3>
+			</div>
+			<button th:onclick="location.href='/index'" class="button">Continue</button>
+		</div>
+	</div>
+	<script>
+		window.onload = function () {
+			var popup = document.getElementById("popup-container");
+			popup.style.display = "block";
+		};
+
+	</script>
+</body>
+
+</html>

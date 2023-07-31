@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="CollegePortalProject" default="jar" xmlns:sonar="antlib:org.sonar.ant">
+
+<!--	<property name="src.dir" value="src/main" />	
+	<property name="resources.dir" value="src/main" />
+	<property name="build.dir" value="build" />
+	<property name="dist.dir" value="target" />
+	<property name="lib.dir" value="lib" />	-->
+
+	 <property file="build.properties"/>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>		
+	</target>
+
+	<target name="copyMessages" >
+		
+			<copy todir="${build.dir}/resources" overwrite="true">
+				<fileset dir="${resources.dir}">
+				</fileset>
+			</copy>
+	</target>
+	<target name="movedependentJars">
+
+		<copy todir="${build.dir}/lib" overwrite="true">
+			<fileset dir="${lib.dir}" excludes="">
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile,copyMessages,movedependentJars">
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/demoapp.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="com.project.college_portal.BrightCollegePortalApplication" />
+			</manifest>
+		</jar>
+	</target>
+
+	
+
+	
+</project>
