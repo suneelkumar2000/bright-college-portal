@@ -1,6 +1,6 @@
 # bright-college-portal
-User Manual: https://docs.google.com/document/d/1n2hMWJSayiUDYyPLl4KEl_G83ADkfUHVAgi7PG4J1DA/edit
-PPT: https://docs.google.com/presentation/d/17aZ3eGQ9seVYCeM8SRW1rHb5lB8TFkWYT82WzzHt7Ps/edit#slide=id.p7
+<h4>User Manual: https://docs.google.com/document/d/1n2hMWJSayiUDYyPLl4KEl_G83ADkfUHVAgi7PG4J1DA/edit</h4>
+<h4>PPT: https://docs.google.com/presentation/d/17aZ3eGQ9seVYCeM8SRW1rHb5lB8TFkWYT82WzzHt7Ps/edit#slide=id.p7</h4>
 <div align="center"> <h2>Bright College Portal</h2></div>
 <h3>Features in  College Portal</h3>
 <br>
