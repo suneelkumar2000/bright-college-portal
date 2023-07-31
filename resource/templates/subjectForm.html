@@ -255,7 +255,7 @@
         let validateName = (name) => {
             return String(name)
                 .match(
-                    /^[A-Za-z]+$/
+                    /^([^-\s][a-z .A-Z]{4,20})$/
                 );
         };
     </script>
