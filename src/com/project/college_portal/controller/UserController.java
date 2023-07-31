@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -46,7 +47,7 @@ public class UserController {
 	// --------- user method ---------
 
 	// method to save register details
-	@GetMapping(path = "/signupSubmit")
+	@PostMapping(path = "/signupSubmit")
 	public String saveUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
 			@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("phone") Long phone, @RequestParam("gender") String gender, @RequestParam("roll") String roll,
@@ -70,7 +71,7 @@ public class UserController {
 	}
 
 	// method to get Login success
-	@GetMapping(path = "/loginSubmit")
+	@PostMapping(path = "/loginSubmit")
 	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model,
 			HttpSession session) throws InvalidMailIdException, JsonProcessingException {
 		UserPojo userPojo = new UserPojo();
@@ -87,7 +88,7 @@ public class UserController {
 	}
 
 	// method to get forgot password
-	@GetMapping(path = "/forgotPassword")
+	@PostMapping(path = "/forgotPassword")
 	public String forgotPassword(@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("phone") Long phone, HttpSession session) throws ForgotPasswordException {
 		UserPojo userPojo = new UserPojo();
@@ -107,7 +108,7 @@ public class UserController {
 	// --------- student method ---------
 
 	// method to update student Registration details
-	@GetMapping(path = "/studentsave")
+	@PostMapping(path = "/studentsave")
 	public String studentsave(@RequestParam("phone") Long phone, @RequestParam("DOB") Date dob,
 			@RequestParam("department") String department, @RequestParam("year") int year,
 			@RequestParam("parentName") String parentName, HttpSession session) {

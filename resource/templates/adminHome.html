@@ -5,8 +5,7 @@
 	<title>Staff Home</title>
 	<meta charSet="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" type="text/css"
-	th:href="@{/CSS file/footer.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/CSS file/footer.css}">
 	<style media="only screen">
 		html,
 		body {
@@ -44,7 +43,7 @@
 			width: 100%;
 		}
 
-		
+
 		li span {
 			float: left;
 			align-items: center;
@@ -97,7 +96,7 @@
 			top: 0;
 			/* Stay at the top */
 			left: 0;
-			background: linear-gradient(180deg, #000000,#272d3f,#1e2436,#1e2436);
+			background: linear-gradient(180deg, #000000, #272d3f, #1e2436, #1e2436);
 			/* Black*/
 			overflow-x: hidden;
 			/* Disable horizontal scroll */
@@ -147,9 +146,23 @@
 				font-size: 18px;
 			}
 		}
+
 		.center {
 			align-items: center;
 			text-align: center;
+		}
+
+		.container {
+			position: relative;
+			width: 97%;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-image: url("https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGVnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60");
+			background-size: cover;
+			transition: 0.5px;
+			padding: 20px;
 		}
 	</style>
 </head>
@@ -160,26 +173,28 @@
 			<ul>
 				<li><a th:href="@{/logout}">Logout</a></li>
 				<li class="menu"><span onclick="openNav()"><img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU" alt="logo"
-							class="logoimage"> BRIGHT</span></li>
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3SVASwK26QRvzCN9g96xpBMkouozClzxiQ&usqp=CAU"
+							alt="logo" class="logoimage"> BRIGHT</span></li>
 			</ul>
 		</nav>
 	</div>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a th:href="@{/adminHome}">Home</a>
-    	<a th:href="@{/listofusers}">Student List</a>
-    	<a th:href="@{/attendanceAdmin}">Attendance</a>
-    	<a th:href="@{/resultAdmin}">Result</a>
-    	<a th:href="@{/departmentlist}">Department</a>
-    	<a th:href="@{/semesterlist}">Semester List</a>
-    	<a th:href="@{/subjectDetails}">Subject Details</a>
-    	<a th:href="@{/examlist}">Exam Details</a>
+		<a th:href="@{/listofusers}">Student List</a>
+		<a th:href="@{/attendanceAdmin}">Attendance</a>
+		<a th:href="@{/resultAdmin}">Result</a>
+		<a th:href="@{/departmentlist}">Department</a>
+		<a th:href="@{/semesterlist}">Semester List</a>
+		<a th:href="@{/subjectDetails}">Subject Details</a>
+		<a th:href="@{/examlist}">Exam Details</a>
 	</div>
 	<div class="center">
 		<h1>WELCOME <span th:text="${session.firstName}"></span></h1>
 	</div>
 	
+	<div class="container"></div>
+
 	<div id="contactUs">
 		<div th:replace="footer.html::footer"></div>
 	</div>

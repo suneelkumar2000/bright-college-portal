@@ -594,7 +594,7 @@
 			<div class="close-btn" onclick="togglePopup()">x
 			</div>
 			<h1>Login</h1>
-			<form action="login" th:action="@{/loginSubmit}" th:object="${loginForm}" method="GET">
+			<form action="login" th:action="@{/loginSubmit}" th:object="${loginForm}" method="POST">
 				<div class="txt_field">
 					<input type="text" id="email1" name="email" required> <span></span>
 					<label>Email</label>
@@ -620,7 +620,7 @@
 			<h1>Forgot Password !</h1>
 
 			<form id="form2" action="forgotPassword" th:action="@{/forgotPassword}" th:object="${forgotPasswordForm}"
-				method="GET" class="form">
+				method="POST" class="form">
 				<br>
 				<div class="form-control">
 					<label for="email" class="text"><b>Email</b><span class="required">*</span></label> <input

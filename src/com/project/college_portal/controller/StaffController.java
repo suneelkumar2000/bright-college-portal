@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -111,7 +112,7 @@ public class StaffController {
 	}
 
 	// method to add department
-	@GetMapping(path = "/insertdepartment")
+	@PostMapping(path = "/insertdepartment")
 	public String addDepartment(@RequestParam("department") String department, Model model, HttpSession session)
 			throws ExistDepartmentNameException, HigherAuthorityException {
 		int staffId = (int) session.getAttribute(sessionUserId);
@@ -218,7 +219,7 @@ public class StaffController {
 	}
 
 	// method to add Semester
-	@GetMapping(path = "/addsemester")
+	@PostMapping(path = "/addsemester")
 	public String addSemester(@RequestParam("semesterId") int semesterId, Model model) throws ExistSemesterIdException {
 		SemesterPojo semesterPojo = new SemesterPojo();
 		semesterPojo.setId(semesterId);
@@ -261,7 +262,7 @@ public class StaffController {
 	}
 
 	// method to add subject
-	@GetMapping(path = "/addsubject")
+	@PostMapping(path = "/addsubject")
 	public String addSubject(@RequestParam("name") String name, @RequestParam("semesterId") int semesterId,
 			@RequestParam("department") String department, Model model)
 			throws SemesterIdException, DepartmentException, ExistSubjectNameException {
@@ -311,7 +312,7 @@ public class StaffController {
 	}
 
 	// method to add exam
-	@GetMapping(path = "/addexam")
+	@PostMapping(path = "/addexam")
 	public String addExam(@RequestParam("name") String name, @RequestParam("date") Date date,
 			@RequestParam("subjectId") String subjectId, @RequestParam("type") String type, Model model)
 			throws SubjectIdException, ExistExamException {

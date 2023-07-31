@@ -148,7 +148,7 @@
 		<h4><span class="text">First Name : </span><span th:text="${session.firstName}"></span></h4>
 		<h4><span class="text">Last Name : </span><span th:text="${session.lastName}"></span></h4>
 		
-		<form id="form" th:action="@{/studentsave}" method="GET" class="form">
+		<form id="form" th:action="@{/studentsave}" method="POST" class="form">
 		<div class="form-control">
                 <label for="DOB" class="text"><b>Date Of Birth</b></label><input
                     type="date" th:value="${session.dob}" id="DOB" name="DOB" readonly> <i class="fas fa-check-circle"></i> <i
