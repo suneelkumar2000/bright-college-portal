@@ -41,7 +41,7 @@ public class HomeController {
 	String errorMessage = "ErrorMessage";
 	String modeldepartmentList = "departmentList";
 	String modelsubjectList = "subjectList";
-	String modelAttendanceDetails="attendanceDetails";
+	String modelAttendanceDetails = "attendanceDetails";
 
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	UserService userService = new UserService();
@@ -96,9 +96,10 @@ public class HomeController {
 
 	// method to get student attendance
 	@GetMapping(path = "/attendance")
-	public String attendance(Model model, HttpSession session) throws JsonProcessingException, AttendanceUserIdException {
+	public String attendance(Model model, HttpSession session)
+			throws JsonProcessingException, AttendanceUserIdException {
 		int userId = (int) session.getAttribute(sessionUserId);
-		model.addAttribute(modelAttendanceDetails,userService.findStudentAttendance(userId , model,session));
+		model.addAttribute(modelAttendanceDetails, userService.findStudentAttendance(userId, model, session));
 		return "attendance";
 	}
 
@@ -109,8 +110,14 @@ public class HomeController {
 		return "attendanceAdmin";
 	}
 
-	// method to get logout
+	// method to get logout confirmation
 	@GetMapping(path = "/logout")
+	public String logout() {
+		return "logoutpopup";
+	}
+
+	// method to get logout
+	@GetMapping(path = "/confirmlogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "index";

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Logout confirmation</title>
+	<link th:href="@{https://fonts.googleapis.com/css2?family=Poppins&display=swap}" rel="stylesheet">
+	<style media="screen">
+		*,
+		*:before,
+		*:after {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkKYVDjQFl6dMTYaiGlXFEtrfrInClO6EkMw&usqp=CAU") ;
+			background-size: cover;
+		}
+
+		.popup {
+			background-color: #ffffff9c;
+			width: 420px;
+			padding: 30px 40px;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			left: 50%;
+			top: 50%;
+			border-radius: 8px;
+			font-family: "Poppins", sans-serif;
+			display: none;
+			text-align: center;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+
+		}
+
+
+		.popup h2 {
+			margin-top: -20px;
+		}
+
+		.popup h3 {
+			font-size: 18px;
+			text-align: center;
+			margin: 20px 0;
+			padding-left: 25px;
+			padding-right: 25px;
+			line-height: 25px;
+		}
+
+		.logout {
+			font-size: 16px;
+			display: block;
+			width: 90%;
+			height: 1.3cm;
+			position: relative;
+			margin: 10px auto;
+			text-align: center;
+			background-color: white;
+			color: #0746f2;
+			border: 2px solid #0746f2;
+			border-radius: 20px;
+			text-decoration: none;
+			padding: 8px 0;
+			cursor: pointer;
+		}
+		.logout a{
+			color: #0746f2;
+		}
+		
+		.logout a:hover {
+			color: #f20707;
+		}
+
+		.logout:hover {
+			color: #f20707;
+			border: 2px solid #f20707;
+		}
+
+		.cancle {
+			display: block;
+			width: 150px;
+			position: relative;
+			margin: 10px auto;
+			text-align: center;
+			background-color: white;
+			color: #574d4d;
+			border: 2px solid #574d4d;
+			border-radius: 20px;
+			text-decoration: none;
+			padding: 8px 0;
+		}
+
+		.cancle:hover {
+
+			color: #f20707;
+			border: 2px solid #f20707;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="popup">
+		<h2>logout confirmation</h2>
+		<p>
+		<h3 style="color: rgb(128, 36, 36);">Are you sure Do you want to Logout ?</h3>
+		</p>
+		<button class="logout"><a th:href="@{/confirmlogout}">logout</a></button>
+		<input type="button" value="cancel" th:onclick="location.href='javascript:history.back()'" class="cancle">
+
+	</div>
+
+
+	<script type="text/javascript">
+		window.addEventListener("load", function () {
+			setTimeout(function open(event) {
+				document.querySelector(".popup").style.display = "block";
+			}, 600)
+		});
+
+		document.querySelector("#close").addEventListener("click", function () {
+			document.querySelector(".popup").style.display = "none";
+		});
+	</script>
+</body>
+
+</html>
